@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Coreos-osx-gui : CoreOS-Vagrant GUI for OS X">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Coreos-osx-gui</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/rimusz/coreos-osx-gui">View on GitHub</a>
+
+          <h1 id="project_title">Coreos-osx-gui</h1>
+          <h2 id="project_tagline">CoreOS-Vagrant GUI for OS X</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/rimusz/coreos-osx-gui/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/rimusz/coreos-osx-gui/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="coreos-vagrant-gui-for-os-x" class="anchor" href="#coreos-vagrant-gui-for-os-x"><span class="octicon octicon-link"></span></a>CoreOS-Vagrant GUI for OS X</h1>
+
+<p>CoreOS-Vagrant GUI for Mac OS X is a Mac Status bar App which works like a wrapper around the <a href="https://github.com/coreos/coreos-vagrant">coreos-vagrant</a> command line tool. It supports only a standalone CoreOS VM, cluster one is in the works <a href="https://github.com/rimusz/coreos-osx-gui-cluster">CoreOS-Vagrant Cluster GUI</a>.</p>
+
+<p><a href="https://coreos.com">CoreOS</a> is a Linux distribution made specifically to run <a href="https://www.docker.io/">Docker</a> containers.
+<a href="https://github.com/coreos/coreos-vagrant">CoreOS-Vagrant</a> is made to run on VirtualBox and VMWare VMs.</p>
+
+<p><img src="coreos-vagrant-gui.png" alt="CoreOS-Vagrant-GUI L" title="CoreOS-Vagrant-GUI"></p>
+
+<h2>
+<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p>Head over to the <a href="https://github.com/rimusz/coreos-osx-gui/releases">Releases Page</a> to grab the latest ZIP file.</p>
+
+<h2>
+<a name="how-to-install" class="anchor" href="#how-to-install"><span class="octicon octicon-link"></span></a>How to install</h2>
+
+<p>Required software</p>
+
+<ul>
+<li><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox for Mac OS X hosts</a></li>
+<li><a href="http://www.vagrantup.com/downloads.html">Vagrant for Mac OS X</a></li>
+<li><p><a href="http://www.iterm2.com/#/section/downloads">iTerm 2</a></p></li>
+<li><p>Download <code>CoreOS Vagrant OSX GUI latest.zip</code> from the <a href="https://github.com/rimusz/coreos-osx-gui/releases">Releases Page</a> and unzip it.</p></li>
+<li>Start the <code>CoreOS Vagrant OSX GUI</code> and from menu <code>Setup</code> choose <code>Initial setup of CoreOS-Vagrant</code> </li>
+<li>The install will do the following:</li>
+</ul>
+
+<pre><code>1) All dependent files/folders will be put under "coreos-osx" folder in the user's home folder e.g /Users/someuser/coreos-osx
+2) Will clone latest coreos-vagrant from git
+3) user-data file will have fleet, etcd, Docker Socket for the API and DockerUI enabled
+4) docker 2375 port will be set for docker OS X client to work properly
+5) Will set VM IP to 172.17.8.99 for DockerUI to properly open in a default web browser
+6) Will download and install fleet, etcd and docker OS X clients to ~/coreos-osx/bin/
+7) Will download latest vagrant VBox and run vagrant up to initialise VM
+8) Will forward 2375 (docker) and 9000 (DockerUI) from host to vagrant VM.
+9) By default alpha release channel is set.
+</code></pre>
+
+<h2>
+<a name="how-it-works" class="anchor" href="#how-it-works"><span class="octicon octicon-link"></span></a>How it works</h2>
+
+<p>Just start <code>CoreOS Vagrant OSX GUI</code> application and you will find a small icon with the CoreOS logo in the Status Bar.
+For now it only supports a standalone CoreOS VM, cluster support might come at some stage later one.</p>
+
+<ul>
+<li>There you can <code>Up</code>, <code>Suspend</code>, <code>Halt</code>, <code>Reload</code> CoreOS vagrant VM</li>
+<li>Under <code>Up &amp; OS shell</code> OS Shell will be opened when <code>vagrant up</code> finishes and it will have such environment set:</li>
+</ul>
+
+<pre><code>DOCKER_HOST=tcp://127.0.0.1:2375
+FLEETCTL_TUNNEL=127.0.0.1:2222
+Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries are stored
+ssh-add ~/.vagrant.d/insecure_private_key for the fleetctl tunnel to work properly
+</code></pre>
+
+<ul>
+<li>
+<code>Check for updates</code> will update docker, etcdclt and fleetctl OS X clients to the same versions as CoreOS VM runs. It will store downloads from github <code>coreos-vagrant</code> in <code>~/coreos-osx/github</code> folder, it will not overwrite user's <code>Vagrantfile, config.rb and users-data</code> files.</li>
+<li>
+<code>SSH</code> will open VM shell</li>
+<li>
+<a href="https://github.com/crosbymichael/dockerui">DockerUI</a> will show all running containers and etc (it might take a bit of a time after install for it to work as it needs to download it's image)</li>
+</ul>
+
+<h2>
+<a name="to-dos" class="anchor" href="#to-dos"><span class="octicon octicon-link"></span></a>TO-DOs</h2>
+
+<ul>
+<li>Add Destroy VM, change CoreOS release channel and CoreOS-Vagrant remove options</li>
+</ul>
+
+<h2>
+<a name="other-links" class="anchor" href="#other-links"><span class="octicon octicon-link"></span></a>Other links</h2>
+
+<p>Also you might like my other <a href="https://github.com/rimusz/boot2docker-gui-osx">boot2docker GUI for OS X</a> project for <a href="https://github.com/boot2docker/boot2docker">boot2docker</a>,
+as I use both projects depending on the work I need to do.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Coreos-osx-gui maintained by <a href="https://github.com/rimusz">rimusz</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
