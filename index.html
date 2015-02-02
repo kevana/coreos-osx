@@ -55,7 +55,6 @@
 <li>
 <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox for Mac OS X hosts</a>, <a href="http://www.vagrantup.com/downloads.html">Vagrant for Mac OS X</a> and <a href="http://www.iterm2.com/#/section/downloads">iTerm 2</a>
 </li>
-<li>It works very well with Vagrant 1.6.x, but on 1.7.x it might have problems with fleetctl as of v1.7, Vagrant splats a random SSH key on each VM.</li>
 <li>Download <code>CoreOS Vagrant OSX GUI latest.zip</code> from the <a href="https://github.com/rimusz/coreos-osx-gui/releases">Releases Page</a> and unzip it.</li>
 <li>Start the <code>CoreOS Vagrant OSX GUI</code> and from menu <code>Setup</code> choose <code>Initial setup of CoreOS-Vagrant</code> </li>
 <li>The install will do the following:</li>
@@ -81,16 +80,19 @@ For now it only supports a standalone CoreOS VM, cluster support might come at s
 
 <ul>
 <li>There you can <code>Up</code>, <code>Suspend</code>, <code>Halt</code>, <code>Reload</code> CoreOS vagrant VM</li>
-<li>Under <code>Up &amp; OS shell</code> OS Shell will be opened when <code>vagrant up</code> finishes and it will have such environment set:</li>
+<li>Under <code>Up</code> OS Shell will be opened when <code>vagrant up</code> finishes and it will have such environment set:</li>
 </ul>
 
 <pre><code>DOCKER_HOST=tcp://127.0.0.1:2375
-FLEETCTL_TUNNEL=127.0.0.1:2222
+ETCDCTL_PEERS=http://172.17.8.99:4001
+FLEETCTL_ENDPOINT=http://172.17.8.99:4001
 Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries are stored
-ssh-add ~/.vagrant.d/insecure_private_key for the fleetctl tunnel to work properly
 </code></pre>
 
 <ul>
+<li>
+<code>OS Shell</code> opens OS Shell with the same enviroment preset as <code>Up</code>
+</li>
 <li>
 <code>Updates/Force CoreOS update</code> will run <code>sudo update_engine_client -update</code> on CoreOS VM.</li>
 <li>
@@ -110,7 +112,7 @@ ssh-add ~/.vagrant.d/insecure_private_key for the fleetctl tunnel to work proper
 
 <ul>
 <li>Cluster one CoreOS VM App can be found here <a href="https://github.com/rimusz/coreos-osx-gui-cluster">CoreOS-Vagrant Cluster GUI</a>.</li>
-<li>Also you might like my other <a href="https://github.com/rimusz/boot2docker-gui-osx">boot2docker GUI for OS X</a> project for <a href="https://github.com/boot2docker/boot2docker">boot2docker</a>.</li>
+<li>Kubernetes Cluster one CoreOS VM App can be found here <a href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster">CoreOS-Vagrant Kubernetes Cluster GUI </a>.</li>
 </ul>
       </section>
     </div>
