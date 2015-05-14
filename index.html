@@ -1,40 +1,30 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Coreos-osx-gui : CoreOS-Vagrant GUI for OS X">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Coreos-osx-gui</title>
+    <meta charset="UTF-8">
+    <title>Coreos-osx-gui by rimusz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Coreos-osx-gui</h1>
+      <h2 class="project-tagline">CoreOS-Vagrant GUI for OS X</h2>
+      <a href="https://github.com/rimusz/coreos-osx-gui" class="btn">View on GitHub</a>
+      <a href="https://github.com/rimusz/coreos-osx-gui/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/rimusz/coreos-osx-gui/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/rimusz/coreos-osx-gui">View on GitHub</a>
-
-          <h1 id="project_title">Coreos-osx-gui</h1>
-          <h2 id="project_tagline">CoreOS-Vagrant GUI for OS X</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/rimusz/coreos-osx-gui/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/rimusz/coreos-osx-gui/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="coreos-vagrant-gui-for-os-x" class="anchor" href="#coreos-vagrant-gui-for-os-x" aria-hidden="true"><span class="octicon octicon-link"></span></a>CoreOS-Vagrant GUI for OS X</h1>
 
-<p>CoreOS-Vagrant GUI for Mac OS X is a Mac Status bar App which works like a wrapper around the <a href="https://github.com/coreos/coreos-vagrant">coreos-vagrant</a> command line tool. It supports only a standalone CoreOS VM, cluster one is at <a href="https://github.com/rimusz/coreos-osx-gui-cluster">CoreOS-Vagrant Cluster GUI</a>. Now includes Rocket.</p>
+<p>CoreOS-Vagrant GUI for Mac OS X is a Mac Status bar App which works like a wrapper around the <a href="https://github.com/coreos/coreos-vagrant">coreos-vagrant</a> command line tool. It supports only a standalone CoreOS VM, cluster one is at <a href="https://github.com/rimusz/coreos-osx-gui-cluster">CoreOS-Vagrant Cluster GUI</a>.</p>
+
+<p>Note: Alpha and beta channel use etcd2, stable is still on etcd 0.4.</p>
 
 <p><a href="https://coreos.com">CoreOS</a> is a Linux distribution made specifically to run <a href="https://www.docker.io/">Docker</a> containers.
 <a href="https://github.com/coreos/coreos-vagrant">CoreOS-Vagrant</a> is made to run on VirtualBox and VMWare VMs.</p>
@@ -95,6 +85,7 @@ For now it only supports a standalone CoreOS VM, cluster support might come at s
 <pre><code>DOCKER_HOST=tcp://127.0.0.1:2375
 ETCDCTL_PEERS=http://172.19.8.99:4001
 FLEETCTL_ENDPOINT=http://172.19.8.99:4001
+FLEETCTL_DRIVER=etcd
 Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries and rkt shell 
 script are stored
 </code></pre>
@@ -108,9 +99,9 @@ script are stored
 <li>
 <code>Updates/Force CoreOS update</code> will run <code>sudo update_engine_client -update</code> on CoreOS VM.</li>
 <li>
-<code>Updates/Check for updates</code> will update docker, etcdclt and fleetctl OS X clients to the same versions as CoreOS VM runs. * <a href="http://fleetui.com">Fleet-UI</a> will show running fleet units and etc (it might take a bit of a time after install for it to work as it needs to download it's image</li>
+<code>Updates/Check for updates</code> will update docker, etcdclt and fleetctl OS X clients to the same versions as CoreOS VM runs. * <a href="http://fleetui.com">Fleet-UI</a> dasboard will show running <code>fleet</code> units and etc (it might take a bit of a time after install for it to work, as it needs to download it's image)</li>
 <li>
-<a href="https://github.com/crosbymichael/dockerui">DockerUI</a> will show all running containers and etc (it might take a bit of a time after install for it to work as it needs to download it's image)</li>
+<a href="https://github.com/crosbymichael/dockerui">DockerUI</a> will show all running containers and etc (it might take a bit of a time after install for it to work, as it needs to download it's image)</li>
 <li>Put your fleet units into <code>~/coreos-osx/my_fleet</code> and manually start them. If you destroy the VM and use <code>Up</code>, your fleet units will be automaticly deployed by <code>fleetctl</code>.</li>
 <li>This App has much automation as possible to make easier to destroy VM, change CoreOS release channel and get back to your previous setup in a fresh built VM with your saved docker images and fleet units.</li>
 </ul>
@@ -122,18 +113,16 @@ script are stored
 <li>Cluster one CoreOS VM App can be found here <a href="https://github.com/rimusz/coreos-osx-gui-cluster">CoreOS-Vagrant Cluster GUI</a>.</li>
 <li>Kubernetes Cluster one CoreOS VM App can be found here <a href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster">CoreOS-Vagrant Kubernetes Cluster GUI </a>.</li>
 </ul>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Coreos-osx-gui maintained by <a href="https://github.com/rimusz">rimusz</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/rimusz/coreos-osx-gui">Coreos-osx-gui</a> is maintained by <a href="https://github.com/rimusz">rimusz</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-    
+    </section>
 
+  
   </body>
 </html>
+
